@@ -1,0 +1,15 @@
+module.exports = {
+  '@milo_live': 'https://main--milo--adobecom.aem.live',
+  '@milo_prod': 'https://milo.adobe.com',
+  '@milo_stage': 'https://stage--milo--adobecom.aem.live',
+  '@feds_live': 'https://gnav--milo--adobecom.aem.live',
+  '@adobe_stage': 'https://www.stage.adobe.com',
+  '@adobe_prod': 'https://www.adobe.com',
+  '@cc_live': 'https://main--cc--adobecom.aem.live',
+  '@cc_stage': 'https://stage--cc--adobecom.aem.live',
+  '@uar_live': 'https://uar-integration--milo--adobecom.hlx.live',
+  '@local3000': 'http://localhost:3000',
+  '@local6456': 'http://localhost:6456',
+  '@express_stage': 'https://stage--express-milo--adobecom.aem.live',
+  '@express_live': 'https://main--express-milo--adobecom.aem.live', 
+};
