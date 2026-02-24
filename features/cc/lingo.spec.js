@@ -1954,7 +1954,7 @@ module.exports = {
     },
     {
       tcid: '275',
-      name: '@display-lingo-banner-us-language-for-gb',
+      name: '@display-lingo-banner-uk-language-for-gb',
       path: '/solutions/content-management.html?akamaiLocale=gb',
       tags: '@cc @cc-lingo @cc-lingodisplay-us-gb',
       url: 'https://business.stage.adobe.com/solutions/content-management.html?akamaiLocale=gb',
@@ -1962,7 +1962,7 @@ module.exports = {
     },
     {
       tcid: '276',
-      name: '@display-lingo-banner-us-language-for-au',
+      name: '@display-lingo-banner-au-language-for-au',
       path: '/solutions/content-management.html?akamaiLocale=au',
       tags: '@cc @cc-lingo @cc-lingodisplay-us-au',
       url: 'https://business.stage.adobe.com/solutions/content-management.html?akamaiLocale=au',
@@ -1970,7 +1970,7 @@ module.exports = {
     },
     {
       tcid: '277',
-      name: '@display-lingo-banner-us-language-for-es',
+      name: '@display-lingo-banner-es-language-for-es',
       path: '/solutions/content-management.html?akamaiLocale=es',
       tags: '@cc @cc-lingo @cc-lingodisplay-us-es',
       url: 'https://business.stage.adobe.com/solutions/content-management.html?akamaiLocale=es',
@@ -1978,7 +1978,7 @@ module.exports = {
     },
     {
       tcid: '278',
-      name: '@display-lingo-banner-us-language-for-kr',
+      name: '@display-lingo-banner-kr-language-for-kr',
       path: '/solutions/content-management.html?akamaiLocale=kr',
       tags: '@cc @cc-lingo @cc-lingodisplay-us-kr',
       url: 'https://business.stage.adobe.com/solutions/content-management.html?akamaiLocale=kr',
@@ -1986,7 +1986,7 @@ module.exports = {
     },
     {
       tcid: '279',
-      name: '@display-lingo-banner-us-language-for-it',
+      name: '@display-lingo-banner-it-language-for-it',
       path: '/solutions/content-management.html?akamaiLocale=it',
       tags: '@cc @cc-lingo @cc-lingodisplay-us-it',
       url: 'https://business.stage.adobe.com/solutions/content-management.html?akamaiLocale=it',
