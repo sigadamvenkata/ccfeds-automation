@@ -12,4 +12,9 @@ module.exports = {
   '@local6456': 'http://localhost:6456',
   '@express_stage': 'https://stage--express-milo--adobecom.aem.live',
   '@express_live': 'https://main--express-milo--adobecom.aem.live', 
+  '@bacom_live': 'https://main--da-bacom--adobecom.aem.live',
+  '@bacom_prod': 'https://business.adobe.com',
+  '@bacom_stage': 'https://business.stage.adobe.com',
+  '@bacomblog_live': 'https://main--da-bacom-blog--adobecom.aem.live',
+  '@bacomblog_prod': 'https://business.adobe.com/blog',
 };
