@@ -33,6 +33,7 @@ test.describe('Validate lingo functionality', () => {
       expect(await lingo.bannerCloseBtn).toBeVisible();
     });
   });
+
   test(`${features[1].name},${features[1].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[3].path}`);
     await test.step('check if lingo banner closed then its not appear again', async () => {
@@ -57,6 +58,7 @@ test.describe('Validate lingo functionality', () => {
       await expect(lingo.langBanner).not.toBeVisible();
     });
   });
+
   test(`${features[2].name},${features[2].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[2].path}`);
     await test.step('Accept lingo banner proposel and change to respective country lang', async () => {
@@ -77,6 +79,7 @@ test.describe('Validate lingo functionality', () => {
       await expect(page).toHaveURL(expectedUrl);
     });
   });
+
   test(`${features[3].name},${features[3].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[3].path}`);
     await test.step('direct lang urls, Ex, UK or NZ then user should be in same language, WPS rule', async () => {
@@ -91,6 +94,7 @@ test.describe('Validate lingo functionality', () => {
       await expect(page).toHaveURL(expectedUrl);
     });
   });
+
   test(`${features[4].name},${features[4].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[4].path}`);
     await test.step('Non direct lang url, ex sg and user should be go to US page, WPS rule', async () => {
@@ -106,6 +110,7 @@ test.describe('Validate lingo functionality', () => {
       await expect(page).toHaveURL(expectedUrl);
     });
   });
+
   test(`${features[5].name},${features[5].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[5].path}`);
     await test.step('GEO routing model should not show in lingo site', async () => {
@@ -118,6 +123,7 @@ test.describe('Validate lingo functionality', () => {
       await page.waitForTimeout(10000);
     });
   });
+
   test(`${features[6].name},${features[6].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[6].path}`);
     await test.step('language picker should have 11 languages', async () => {
@@ -139,6 +145,7 @@ test.describe('Validate lingo functionality', () => {
       expect(languageItems).toEqual(expected_Languages);
     });
   });
+
   test(`${features[7].name},${features[7].tags}`, async ({ page, baseURL }) => {
     console.info(`[Test Page]: ${baseURL}${features[7].path}`);
     await test.step('site should change as per selected language', async () => {
@@ -157,6 +164,7 @@ test.describe('Validate lingo functionality', () => {
       await expect(page).toHaveURL(expectedUrl);
     });
   });
+
   test(`${features[8].name},${features[8].tags}`, async ({ page, baseURL }) => {
     await test.step('When I visit a page that matches my region and language', async () => {
       await gotoAndVerify(page, baseURL, features[8].path);
@@ -167,13 +175,14 @@ test.describe('Validate lingo functionality', () => {
       await expect(lingo.langBanner).toHaveCount(0);
     });
   });
+
   test(`${features[9].name},${features[9].tags}`, async ({ page, baseURL }) => {
     await test.step('When I visit a page from a region different from my language choice', async () => {
       await gotoAndVerify(page, baseURL, features[9].path);
       const expectedUrl = features[9].url;
       await expect(page).toHaveURL(expectedUrl);
       await expect(lingo.langBanner).toBeVisible();
-      await expect(lingo.langBannerTxt).toHaveText('Diese seite anzeigen in Deutsch.');
+      await expect(lingo.langBannerTxt).toHaveText('Diese Seite in Deutsch anzeigen.');
       await expect(lingo.langBannerLink).toHaveAttribute('href', features[9].bannerLink);
       await expect(lingo.langBannerLink).toHaveText('Weitermachen');
       await expect(lingo.bannerCloseBtn).toBeVisible();
@@ -188,6 +197,7 @@ test.describe('Validate lingo functionality', () => {
       await expect(page).toHaveURL(features[9].bannerLink);
     });
   });
+
   test(`${features[10].name},${features[10].tags}`, async ({ page, baseURL }) => {
     await test.step('When I visit a page, cookies should not be set and the banner should not be displayed', async () => {
       await gotoAndVerify(page, baseURL, features[10].path);
@@ -202,6 +212,7 @@ test.describe('Validate lingo functionality', () => {
       expect(internationalCookie).toBeUndefined();
     });
   });
+
   test(`${features[11].name},${features[11].tags}`, async ({ page, baseURL }) => {
     await test.step('When I visit a page, the US banner should be displayed', async () => {
       await gotoAndVerify(page, baseURL, features[11].path);
@@ -223,13 +234,15 @@ test.describe('Validate lingo functionality', () => {
       await expect(page).toHaveURL(features[11].bannerLink);
     });
   });
+
+  // Region Priority CH:1 > DE Banner
   test(`${features[12].name},${features[12].tags}`, async ({ page, baseURL }) => {
     await test.step('Visiting the JP and CH locales shows the DE banner, and accepting it redirects to the DE page', async () => {
       await gotoAndVerify(page, baseURL, features[12].path);
       const expectedUrl = features[12].url;
       await expect(page).toHaveURL(expectedUrl);
       await expect(lingo.langBanner).toBeVisible();
-      await expect(lingo.langBannerTxt).toHaveText('Diese seite anzeigen in Deutsch.');
+      await expect(lingo.langBannerTxt).toHaveText('Diese Seite in Deutsch anzeigen.');
       await expect(lingo.langBannerLink).toHaveAttribute('href', features[12].bannerLink);
       await expect(lingo.langBannerLink).toHaveText('Weitermachen');
       await expect(lingo.bannerCloseBtn).toBeVisible();
@@ -244,6 +257,7 @@ test.describe('Validate lingo functionality', () => {
       await expect(page).toHaveURL(features[12].bannerLink);
     });
   });
+
   test(`${features[13].name},${features[13].tags}`, async ({ page, baseURL }) => {
     await test.step('When I visit a page, the banner should not be displayed', async () => {
       await gotoAndVerify(page, baseURL, features[13].path);
@@ -258,6 +272,8 @@ test.describe('Validate lingo functionality', () => {
       expect(internationalCookie).toBeUndefined();
     });
   });
+
+  // Region Priority CH:2 > FR Banner
   test(`${features[14].name},${features[14].tags}`, async ({ page, baseURL }) => {
     const getInternationalCookie = async () => {
       const cookies = await page.context().cookies();
@@ -270,7 +286,7 @@ test.describe('Validate lingo functionality', () => {
       await expect(page).toHaveURL(expectedUrl);
 
       await expect(lingo.langBanner).toBeVisible();
-      await expect(lingo.langBannerTxt).toHaveText('Diese seite anzeigen in Deutsch.');
+      await expect(lingo.langBannerTxt).toHaveText('Diese Seite in Deutsch anzeigen.');
       await expect(lingo.langBannerLink).toHaveAttribute('href', features[14].bannerLink);
       await expect(lingo.langBannerLink).toHaveText('Weitermachen');
       await expect(lingo.bannerCloseBtn).toBeVisible();
@@ -301,7 +317,7 @@ test.describe('Validate lingo functionality', () => {
       await page.waitForLoadState('networkidle');
 
       await expect(lingo.langBanner).toBeVisible();
-      await expect(lingo.langBannerTxt).toHaveText('Voir cette page en Français.');
+      await expect(lingo.langBannerTxt).toHaveText('Afficher cette page en Français.');
       await expect(lingo.langBannerLink).toHaveAttribute('href', features[14].expectedURl);
       await expect(lingo.langBannerLink).toHaveText('Continuer');
       await expect(lingo.bannerCloseBtn).toBeVisible();
@@ -315,6 +331,7 @@ test.describe('Validate lingo functionality', () => {
     });
   });
 
+  // Region Priority CH:3 > IT Banner
   test(`${features[15].name},${features[15].tags}`, async ({ page, baseURL }) => {
     const getInternationalCookie = async () => {
       const cookies = await page.context().cookies();
@@ -368,6 +385,184 @@ test.describe('Validate lingo functionality', () => {
         const cookie = await getInternationalCookie();
         expect(cookie).toBeDefined();
         expect(cookie?.value).toBe('it');
+      }).toPass();
+    });
+  });
+
+  const excludedTcids = new Set([192, 193, 225, 239, 253]); // No Banner
+  const allowedTcids = new Set([192, 193, 225, 239, 253]); // US Banner
+
+  const noBannerCases = features.filter((feature) => {
+    const id = Number(feature.tcid);
+    return (
+      !Number.isNaN(id)
+      && id >= 16
+      && id <= 271
+      && !excludedTcids.has(id)
+    );
+  });
+
+  const usBannerCases = features.filter((feature) => {
+    const id = Number(feature.tcid);
+    return (
+      !Number.isNaN(id)
+      && allowedTcids.has(id)
+    );
+  });
+
+  if (!noBannerCases.length && !usBannerCases.length) {
+    throw new Error('No test cases selected!');
+  }
+
+  const usedDynamicTitles = new Set();
+  const buildTitle = (feature) => {
+    const tags = Array.isArray(feature.tags)
+      ? feature.tags.sort().join(',')
+      : feature.tags ?? '';
+
+    return tags
+      ? `[TC-${feature.tcid}] ${feature.name},${tags}`
+      : `[TC-${feature.tcid}] ${feature.name}`;
+  };
+
+  // NO BANNER FOR 404 PAGES
+  noBannerCases.forEach((feature) => {
+    const title = buildTitle(feature);
+
+    if (usedDynamicTitles.has(title)) {
+      throw new Error(`Duplicate dynamic test title detected: ${title}`);
+    }
+    usedDynamicTitles.add(title);
+
+    test(title, async ({ page, baseURL }) => {
+      await test.step(
+        'When I visit the content-management page, the lingo banner should not be displayed',
+        async () => {
+          await gotoAndVerify(page, baseURL, feature.path);
+          await expect(page).toHaveURL(feature.url);
+
+          await expect(lingo.georouting).toHaveCount(0);
+          await expect(lingo.langBanner).toHaveCount(0);
+
+          const cookies = await page.context().cookies();
+          const internationalCookie = cookies.find(
+            (cookie) => cookie.name === 'international',
+          );
+
+          expect(internationalCookie).toBeUndefined();
+        },
+      );
+    });
+  });
+
+  // DISPLAY US BANNER
+  usBannerCases.forEach((feature) => {
+    const title = buildTitle(feature);
+
+    if (usedDynamicTitles.has(title)) {
+      throw new Error(`Duplicate dynamic test title detected: ${title}`);
+    }
+    usedDynamicTitles.add(title);
+
+    test(title, async ({ page, baseURL }) => {
+      await test.step(
+        'When I visit the content-management page, the US lingo banner should be displayed',
+        async () => {
+          const getInternationalCookie = async () => {
+            const cookies = await page.context().cookies();
+            return cookies.find((cookie) => cookie.name === 'international');
+          };
+
+          await gotoAndVerify(page, baseURL, feature.path);
+          await expect(page).toHaveURL(feature.url);
+
+          await expect(lingo.langBanner).toBeVisible();
+          await expect(lingo.langBannerTxt).toHaveText('View this page in English (US).');
+          await expect(lingo.langBannerLink).toHaveAttribute('href', feature.expectedURL);
+          await expect(lingo.langBannerLink).toHaveText('Continue');
+          await expect(lingo.bannerCloseBtn).toBeVisible();
+          await lingo.langBannerLink.click();
+
+          await expect.poll(async () => {
+            const cookie = await getInternationalCookie();
+            return cookie?.value;
+          }).toBe('us');
+        },
+      );
+    });
+  });
+
+  // PT Banner
+  test(`${features[272].name},${features[272].tags}`, async ({ page, baseURL }) => {
+    await test.step('Visiting the IT and PT locales shows the PT banner, and accepting it redirects to the PT page', async () => {
+      await gotoAndVerify(page, baseURL, features[272].path);
+      const expectedUrl = features[272].url;
+      await expect(page).toHaveURL(expectedUrl);
+
+      await expect(lingo.langBanner).toBeVisible();
+      await expect(lingo.langBannerTxt).toHaveText('Visualizar esta página em Português.');
+      await expect(lingo.langBannerLink).toHaveAttribute('href', features[272].bannerLink);
+      await expect(lingo.langBannerLink).toHaveText('Continuar');
+      await expect(lingo.bannerCloseBtn).toBeVisible();
+      await lingo.langBannerLink.click();
+
+      await page.waitForFunction(() => document.cookie.includes('international='));
+      const cookies = await page.context().cookies();
+      const internationalCookie = cookies.find(
+        (cookie) => cookie.name === 'international',
+      );
+
+      expect(internationalCookie).toBeDefined();
+      expect(internationalCookie?.value).toBe('pt');
+
+      await expect(page).toHaveURL(features[272].bannerLink);
+    });
+  });
+
+  // FR Banner
+  test(`${features[273].name},${features[273].tags}`, async ({ page, baseURL }) => {
+    const getInternationalCookie = async () => {
+      const cookies = await page.context().cookies();
+      return cookies.find((cookie) => cookie.name === 'international');
+    };
+
+    await test.step('UK/CA show US banner; selecting FR sets FR cookie and shows FR banner on UK/CA', async () => {
+      await gotoAndVerify(page, baseURL, features[273].path);
+      const expectedUrl = features[273].url;
+      await expect(page).toHaveURL(expectedUrl);
+
+      await expect(lingo.langBanner).toBeVisible();
+      await expect(lingo.langBannerTxt).toHaveText('View this page in English (US).');
+      await expect(lingo.langBannerLink).toHaveAttribute('href', features[273].bannerLink);
+      await expect(lingo.langBannerLink).toHaveText('Continue');
+      await expect(lingo.bannerCloseBtn).toBeVisible();
+
+      await lingo.regionPicker.click();
+      await lingo.frenchLang.click();
+      await expect(page).toHaveURL(features[273].changeRegionURL);
+      await page.waitForLoadState('domcontentloaded');
+
+      await expect(async () => {
+        const cookie = await getInternationalCookie();
+        expect(cookie).toBeDefined();
+        expect(cookie?.value).toBe('fr');
+      }).toPass();
+
+      await page.goto(features[273].redirectURL);
+      await expect(page).toHaveURL(features[273].redirectURL);
+      await page.waitForLoadState('networkidle');
+
+      await expect(lingo.langBanner).toBeVisible();
+      await expect(lingo.langBannerTxt).toHaveText('Afficher cette page en Français.');
+      await expect(lingo.langBannerLink).toHaveAttribute('href', features[273].expectedURl);
+      await expect(lingo.langBannerLink).toHaveText('Continuer');
+      await expect(lingo.bannerCloseBtn).toBeVisible();
+      await lingo.langBannerLink.click();
+
+      await expect(async () => {
+        const cookie = await getInternationalCookie();
+        expect(cookie).toBeDefined();
+        expect(cookie?.value).toBe('fr');
       }).toPass();
     });
   });
