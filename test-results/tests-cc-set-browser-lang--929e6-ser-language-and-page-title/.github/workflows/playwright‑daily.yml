@@ -7,7 +7,10 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -33,7 +36,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v3
         with:
-          name: playwright-html-report
+          name: playwright-html-report-${{ matrix.os }}
           path: playwright-report
 
       - name: Parse Results Summary
@@ -60,6 +63,7 @@ jobs:
           message: |
             🤖 *Daily Playwright E2E Report*
             Branch: `${{ github.ref_name }}`
+            OS: `${{ matrix.os }}`
             ✔️ Passed: *${{ steps.summary.outputs.passed }}*
             ❌ Failed: *${{ steps.summary.outputs.failed }}*
             ⏭️ Skipped: *${{ steps.summary.outputs.skipped }}*
