@@ -1,0 +1,71 @@
+name: 📅 Daily Playwright Tests
+
+on:
+  schedule:
+    - cron: '30 0 * * *'  # Every day at 06:00 IST (00:30 UTC)
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests (JSON)
+        id: run-tests
+        run: |
+          npx playwright test -g '@cc-lingo' --config=./configs/cc.config.js --project=cc-live-chrome --headed --workers=5 --reporter=json > playwright-results.json
+        continue-on-error: true
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-html-report-${{ matrix.os }}
+          path: playwright-report
+
+      - name: Parse Results Summary
+        id: summary
+        if: always()
+        run: |
+          node -e "
+          const fs = require('fs');
+          const results = JSON.parse(fs.readFileSync('playwright-results.json'));
+          const allSpecs = results.suites.flatMap(s => s.specs);
+          const passed = allSpecs.filter(s => s.status==='passed').length;
+          const failed = allSpecs.filter(s => s.status==='failed').length;
+          const skipped = allSpecs.filter(s => s.status==='skipped').length;
+          console.log(`::set-output name=passed::${passed}`);
+          console.log(`::set-output name=failed::${failed}`);
+          console.log(`::set-output name=skipped::${skipped}`);
+          "
+
+      - name: Send Slack Notification
+        if: always()
+        uses: rtCamp/action-slack-notify@v2
+        with:
+          webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          message: |
+            🤖 *Daily Playwright E2E Report*
+            Branch: `${{ github.ref_name }}`
+            OS: `${{ matrix.os }}`
+            ✔️ Passed: *${{ steps.summary.outputs.passed }}*
+            ❌ Failed: *${{ steps.summary.outputs.failed }}*
+            ⏭️ Skipped: *${{ steps.summary.outputs.skipped }}*
+            📦 HTML report: https://github.com/${{ github.repository }}/suites/artifacts
+          color: ${{ job.status == 'success' && 'good' || 'danger' }}
