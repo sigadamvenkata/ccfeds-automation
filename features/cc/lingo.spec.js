@@ -2097,7 +2097,7 @@ module.exports = {
     },
 
     {
-      tcid: '291',
+      tcid: '292',
       name: '@LanguageSelectorSearch-and-redirection',
       path: '/pt/solutions/content-management.html?akamaiLocale=co',
       tags: '@cc @search @search-and-redirection',

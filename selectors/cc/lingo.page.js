@@ -140,11 +140,10 @@ const languages = [
 
     expect(texts).toContain(expected);
   }).toPass({ timeout: 6000 });
-}
-    }
       }
+    }
+ }
 
-    
     // ---------- Partial input ----------
      if (tags.includes('@search-partial')) {
     await expect(this.searchContainer).toBeVisible();
@@ -167,7 +166,6 @@ const languages = [
    }
 
     // ---------- Search by "en" ---------
-
 if (tags.includes('@search-en-languages')) {
 
   const enSearches = partialInput.filter(p =>
@@ -266,7 +264,6 @@ if (tags.includes('@search-and-redirection')) {
   await this.page.context().clearCookies();
   await this.page.reload();
   await expect(this.langBanner).toBeVisible({ timeout: 10000 });
-   }
-
+   }  
  }
 }
