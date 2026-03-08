@@ -100,7 +100,7 @@ test.describe('Validate lingo functionality', () => {
     await test.step('Non direct lang url, ex sg and user should be go to US page, WPS rule', async () => {
       await page.goto(`${baseURL}${features[4].path}`);
       await page.waitForLoadState('domcontentloaded');
-      await expect(page).toHaveURL(`${baseURL}${features[4].path}`);
+      await expect(page).toHaveURL(`${features[4].url}`);
     });
     await test.step('Non direct lang url, ex sg and user go to US', async () => {
       await page.waitForLoadState();

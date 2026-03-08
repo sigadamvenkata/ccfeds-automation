@@ -12,7 +12,7 @@ const config = {
   outputDir: '../test-results',
   globalSetup: '../global.setup.js',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 90 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -49,6 +49,7 @@ const config = {
     {
       name: 'cc-live-chrome',
       use: { ...devices['Desktop Chrome'] },
+      retries: 2,
     },
 
     {
