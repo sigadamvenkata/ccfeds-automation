@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from '../../utils/fixtures/test.fixture.js';
 import { features } from '../../features/cc/doodlebug_prompt_based_imagegen_verbs.spec.js';
 import DoodlebugPromptImageGen from '../../selectors/cc/doodlebug_prompt_based_imagegen_verbs.page.js';
 
